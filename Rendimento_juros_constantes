@@ -1,0 +1,28 @@
+def Rendimento_juros_constantes(principal,períodos,taxa_por_período):
+    juros_simples_por_período = []
+    juros_composto_por_período = []
+    juros_simples_acumulado = []
+    juros_composto_acumulado = []
+    montante_simples = []
+    montante_composto = []
+    for n in range(períodos):
+        if n == 0:
+            juros_simples_por_período += [round(principal * taxa_por_período , 2)]
+            juros_composto_por_período += [round(principal * taxa_por_período , 2)]
+            juros_simples_acumulado += [round(principal * taxa_por_período , 2)]
+            juros_composto_acumulado += [round(principal * taxa_por_período, 2)]
+            montante_simples += [round(principal + juros_simples_acumulado[n] , 2)]
+            montante_composto += [round(principal + juros_composto_acumulado[n] , 2)]
+        else:
+            juros_simples_por_período += [round(principal * taxa_por_período , 2)]
+            juros_composto_por_período += [round(montante_composto[n-1] * taxa_por_período , 2)]
+            juros_simples_acumulado += [round(principal * (n+1) * taxa_por_período , 2)]
+            juros_composto_acumulado += [round(principal * (((1 + taxa_por_período)**(n+1))-1) , 2)]
+            montante_simples += [round(principal + juros_simples_acumulado[n] , 2)]
+            montante_composto += [round(principal*(1 + taxa_por_período)**(n+1) , 2)]
+    print(juros_simples_por_período)
+    print(juros_simples_acumulado)
+    print(montante_simples)
+    print(juros_composto_por_período)
+    print(juros_composto_acumulado)
+    print(montante_composto)
